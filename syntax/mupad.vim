@@ -8,6 +8,7 @@
 "au BufNewFile,BufRead *.mu	exe "source ~/.vim/syntax/mupad.vim"
 "
 " History
+"  10040131 fabio   0.4 Added Axiom, Category, Domain library
 "  20040101 fabio   0.3 Corrected some bug 
 "						Redefined all colors (see the colors section)
 "						Added all builtin functions (mupad 2.5.3)
@@ -914,6 +915,125 @@ syn match muBuiltin 	"\<zip\>"
 syn match muBuiltin 	"\<ZMax\>"
 syn match muBuiltin 	"\<ZMin\>"
 
+"Axiom library
+syn match muAx			"\(\<Ax\>::\)\=\<canonicalOrder\>"
+syn match muAx			"\(\<Ax\>::\)\=\<canonicalRep\>"
+syn match muAx			"\(\<Ax\>::\)\=\<canonicalUnitNormal\>"
+syn match muAx			"\(\<Ax\>::\)\=\<closedUnitNormals\>"
+syn match muAx			"\(\<Ax\>::\)\=\<efficientOperation\>"
+syn match muAx			"\(\<Ax\>::\)\=\<indetElements\>"
+syn match muAx			"\(\<Ax\>::\)\=\<noZeroDivisors\>"
+syn match muAx			"\(\<Ax\>::\)\=\<normalRep\>"
+syn match muAx			"\(\<Ax\>::\)\=\<systemRep\>"
+
+"Category library
+syn match muCat			"\(\<Cat\>::\)\=\<AbelianGroup\>"
+syn match muCat			"\(\<Cat\>::\)\=\<AbelianMonoid\>"
+syn match muCat			"\(\<Cat\>::\)\=\<AbelianSemiGroup\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Algebra\>"
+syn match muCat			"\(\<Cat\>::\)\=\<BaseCategory\>"
+syn match muCat			"\(\<Cat\>::\)\=\<CancellationAbelianMonoid\>"
+syn match muCat			"\(\<Cat\>::\)\=\<CommutativeRing\>"
+syn match muCat			"\(\<Cat\>::\)\=\<DifferentialFunction\>"
+syn match muCat			"\(\<Cat\>::\)\=\<DifferentialRing\>"
+syn match muCat			"\(\<Cat\>::\)\=\<DifferentialVariable\>"
+syn match muCat			"\(\<Cat\>::\)\=\<EntireRing\>"
+syn match muCat			"\(\<Cat\>::\)\=\<EuclideanDomain\>"
+syn match muCat			"\(\<Cat\>::\)\=\<FactorialDomain\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Field\>"
+syn match muCat			"\(\<Cat\>::\)\=\<FiniteCollection\>"
+syn match muCat			"\(\<Cat\>::\)\=\<FiniteMonoidRing\>"
+syn match muCat			"\(\<Cat\>::\)\=\<GcdDomain\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Group\>"
+syn match muCat			"\(\<Cat\>::\)\=\<HomogeneousFiniteCollection\>"
+syn match muCat			"\(\<Cat\>::\)\=\<HomogeneousFiniteProduct\>"
+syn match muCat			"\(\<Cat\>::\)\=\<IntegralDomain\>"
+syn match muCat			"\(\<Cat\>::\)\=\<InvolutiveDivision\>"
+syn match muCat			"\(\<Cat\>::\)\=\<LeftModule\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Matrix\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Module\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Monoid\>"
+syn match muCat			"\(\<Cat\>::\)\=\<MonoidRing\>"
+syn match muCat			"\(\<Cat\>::\)\=\<OrderedAbelianMonoid\>"
+syn match muCat			"\(\<Cat\>::\)\=\<OrderedMonoid\>"
+syn match muCat			"\(\<Cat\>::\)\=\<OrderedSet\>"
+syn match muCat			"\(\<Cat\>::\)\=\<PartialDifferentialRing\>"
+syn match muCat			"\(\<Cat\>::\)\=\<PermutationGroup\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Polynomial\>"
+syn match muCat			"\(\<Cat\>::\)\=\<PrincipalIdealDomain\>"
+syn match muCat			"\(\<Cat\>::\)\=\<QuotientField\>"
+syn match muCat			"\(\<Cat\>::\)\=\<RightModule\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Ring\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Rng\>"
+syn match muCat			"\(\<Cat\>::\)\=\<SemiGroup\>"
+syn match muCat			"\(\<Cat\>::\)\=\<Set\>"
+syn match muCat			"\(\<Cat\>::\)\=\<SkewField\>"
+syn match muCat			"\(\<Cat\>::\)\=\<SolvableAlgebra\>"
+syn match muCat			"\(\<Cat\>::\)\=\<SquareMatrix\>"
+syn match muCat			"\(\<Cat\>::\)\=\<UnivariatePolynomial\>"
+syn match muCat			"\(\<Cat\>::\)\=\<UnivariateSkewPolynomial\>"
+syn match muCat			"\(\<Cat\>::\)\=\<VectorSpace\>"
+
+"Domain library
+syn match muDom			"\(\<Dom\>::\)\=\<AlgebraicExtension\>"
+syn match muDom			"\(\<Dom\>::\)\=\<ArithmeticalExpression\>"
+syn match muDom			"\(\<Dom\>::\)\=\<BaseDomain\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Complex\>"
+syn match muDom			"\(\<Dom\>::\)\=\<DifferentialExpression\>"
+syn match muDom			"\(\<Dom\>::\)\=\<DifferentialFunction\>"
+syn match muDom			"\(\<Dom\>::\)\=\<DifferentialPolynomial\>"
+syn match muDom			"\(\<Dom\>::\)\=\<DifferentialVariable\>"
+syn match muDom			"\(\<Dom\>::\)\=\<DihedralGroup\>"
+syn match muDom			"\(\<Dom\>::\)\=\<DistributedPolynomial\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Expression\>"
+syn match muDom			"\(\<Dom\>::\)\=\<ExpressionField\>"
+syn match muDom			"\(\<Dom\>::\)\=\<ExteriorAlgebra\>"
+syn match muDom			"\(\<Dom\>::\)\=\<ExteriorProduct\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Float\>"
+syn match muDom			"\(\<Dom\>::\)\=\<FloatIV\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Fraction\>"
+syn match muDom			"\(\<Dom\>::\)\=\<FreeModule\>"
+syn match muDom			"\(\<Dom\>::\)\=\<GaloisField\>"
+syn match muDom			"\(\<Dom\>::\)\=\<HomogenisedWeylAlgebra\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Ideal\>"
+syn match muDom			"\(\<Dom\>::\)\=\<ImageSet\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Integer\>"
+syn match muDom			"\(\<Dom\>::\)\=\<IntegerMod\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Interval\>"
+syn match muDom			"\(\<Dom\>::\)\=\<JanetDivision\>"
+syn match muDom			"\(\<Dom\>::\)\=\<JetVectorField\>"
+syn match muDom			"\(\<Dom\>::\)\=\<LiftedDivision\>"
+syn match muDom			"\(\<Dom\>::\)\=\<LinearDifferentialFunction\>"
+syn match muDom			"\(\<Dom\>::\)\=\<LinearDifferentialOperator\>"
+syn match muDom			"\(\<Dom\>::\)\=\<LinearOrdinaryDifferentialOperator\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Matrix\>"
+syn match muDom			"\(\<Dom\>::\)\=\<MatrixGroup\>"
+syn match muDom			"\(\<Dom\>::\)\=\<MonoidAlgebra\>"
+syn match muDom			"\(\<Dom\>::\)\=\<MonoidOperatorAlgebra\>"
+syn match muDom			"\(\<Dom\>::\)\=\<MonomOrdering\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Multiset\>"
+syn match muDom			"\(\<Dom\>::\)\=\<MultivariatePolynomial\>"
+syn match muDom			"\(\<Dom\>::\)\=\<MultivariateSeries\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Numerical\>"
+syn match muDom			"\(\<Dom\>::\)\=\<PermutationGroup\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Polynomial\>"
+syn match muDom			"\(\<Dom\>::\)\=\<PommaretDivision\>"
+syn match muDom			"\(\<Dom\>::\)\=\<PowerProduct\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Product\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Quaternion\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Rational\>"
+syn match muDom			"\(\<Dom\>::\)\=\<Real\>"
+syn match muDom			"\(\<Dom\>::\)\=\<RestrictedDifferentialVariable\>"
+syn match muDom			"\(\<Dom\>::\)\=\<SparseMatrix\>"
+syn match muDom			"\(\<Dom\>::\)\=\<SparseMatrixF2\>"
+syn match muDom			"\(\<Dom\>::\)\=\<SquareMatrix\>"
+syn match muDom			"\(\<Dom\>::\)\=\<SymmetricGroup\>"
+syn match muDom			"\(\<Dom\>::\)\=\<TensorAlgebra\>"
+syn match muDom			"\(\<Dom\>::\)\=\<TensorProduct\>"
+syn match muDom			"\(\<Dom\>::\)\=\<UnivariatePolynomial\>"
+syn match muDom			"\(\<Dom\>::\)\=\<UnivariateSkewPolynomial\>"
+syn match muDom			"\(\<Dom\>::\)\=\<VectorField\>"
+syn match muDom			"\(\<Dom\>::\)\=\<WeylAlgebra\>"
 
 " Type library
 syn match muType 		"\(\<Type\>::\)\=\<AlgebraicConstant\>"
@@ -1048,9 +1168,11 @@ if version >= 508 || !exists("did_mupad_syntax_inits")
 
 	HiLink	muArithmetic	lightwhite
 	HiLink	muAssign		lightred
+	HiLink	muAx			lightyellow
 	HiLink	muBoolean		lightyellow
 	HiLink	muBuiltin		yellow
  	HiLink 	muBraceError	redinv
+	HiLink	muCat			lightyellow
   	HiLink 	muComma			lightred
 	HiLink	muComment		cyan
 	HiLink	muComparison	yellow
@@ -1061,6 +1183,7 @@ if version >= 508 || !exists("did_mupad_syntax_inits")
   	HiLink 	muCurlyError	redinv
   	HiLink 	muDefError		redinv
   	HiLink 	muDefProc		magentainv
+	HiLink	muDom			lightyellow
 	HiLink	muError			redinv
 	HiLink	muFunction		lightmagenta
 	HiLink	muNumber		lightwhite
