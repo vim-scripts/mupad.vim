@@ -5,7 +5,9 @@
 " File type  :	*.mu (see :help filetype)
 "
 " History
-"	20030731	fabio		0.1		Creation, copying here and there... ;-)
+"	20030821	fabio	0.2		Added definition syntax with semicolon checking
+"								and made some clean up 
+"	20030731	fabio	0.1		Creation, copying here and there... ;-)
 "
 "	Comments, suggestions and remarks are welcome.
 
@@ -13,34 +15,31 @@
 syntax clear
 
 if version < 600
-  set iskeyword=$,48-57,_,a-z,@-Z
+  set iskeyword=$,48-57,_,:,a-z,@-Z
 else
-  setlocal iskeyword=$,48-57,_,a-z,@-Z
+  setlocal iskeyword=$,48-57,_,:,a-z,@-Z
 endif
-
-
 
 " parenthesis/curly/brace sanity checker
 syn region mupadZone	matchgroup=Delimiter start="(" matchgroup=Delimiter end=")" transparent contains=ALLBUT,mupadError,mupadBraceError,mupadCurlyError
 syn region mupadZone	matchgroup=Delimiter start="{" matchgroup=Delimiter end="}" transparent contains=ALLBUT,mupadError,mupadBraceError,mupadParenError
 syn region mupadZone	matchgroup=Delimiter start="\[" matchgroup=Delimiter end="]" transparent contains=ALLBUT,mupadError,mupadCurlyError,mupadParenError
-syn match  mupadError				"[)\]}]"
-syn match  mupadBraceError			"[)}]"	contained
-syn match  mupadCurlyError			"[)\]]"	contained
-syn match  mupadParenError			"[\]}]"	contained
-syn match  mupadComma				"[,;:]"
-syn match  mupadSemiError			"[;:]"	contained
-
+syn match mupadError				"[)\]}]"
+syn match mupadBraceError			"[)}]"	contained
+syn match mupadCurlyError			"[)\]]"	contained
+syn match mupadParenError			"[\]}]"	contained
+syn match mupadComma				"[,;:]"
+syn match mupadSemiError			"[;]"	contained
 
 " Statement
 " Split into booleans, conditionals, operators, repeat-logic, etc
-syn keyword mupadFunction			proc end_proc begin local
+syn keyword mupadFunction			proc begin local 
+syn keyword	mupadFunction			end_proc:
+syn keyword mupadCond				for if while then elif else	
+syn keyword mupadCond				in to downto step 
+syn keyword mupadCond				do from break
+syn keyword	mupadCond				end_for: end_if: end_while: 
 syn keyword mupadBool				TRUE FALSE UNKNOWN
-syn keyword mupadIfFor				for end_for if end_if while end_while
-syn keyword mupadCond				then elif 	
-syn keyword mupadRepeat				in to downto step 
-syn keyword mupadRepeat				do from 
-syn keyword mupadStatement			break	
 
 " Builtin constants and functions
 syn match mupadConstant				"complexInfinity" "infinity" "E" "exp(1)" "EULER" "PI"
@@ -62,8 +61,6 @@ syn match mupadBoolean				"and" "or" "not" "xor" "==>" "<=>"
 syn match mupadComparison			"[=~]="
 syn match mupadComparison			"[<>]="
 syn match mupadComparison			"<>"
-syn match mupadVarAssign			"[ \t]*:=[ \t]*" contains=mupadAssign
-syn match mupadAssign				":="	contained
 syn match mupadArithmetic			"[+-]"
 syn match mupadArithmetic			"\.\=[*/\\]\.\="
 syn match mupadArithmetic			"\.\=^"
@@ -79,7 +76,10 @@ syn match mupadNumber				"[0-9]\+\(\.[0-9]*\)\=\([DEde][+-]\=[0-9]\+\)\="
 syn match mupadNumber				"\.[0-9]\+\([DEde][+-]\=[0-9]\+\)\="
 syn region mupadString				start=+"+ end=+"+				oneline
 
-
+" Definitions (with checking of ending semicolon)
+syn match mupadAssign				":=" contains=mupadDefError,mupadDefProc
+syn match mupadDefError				":=\([^;]*$\)\@="  contained
+syn match mupadDefProc				":=[ \t]*proc"  contained
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
@@ -92,26 +92,26 @@ if version >= 508 || !exists("did_maplev_syntax_inits")
     command -nargs=+ HiLink hi def link <args>
   endif
 
-	HiLink	mupadArithmetic				Operator
-	HiLink	mupadAssign					Operator
-	HiLink	mupadBoolean				Boolean
- 	HiLink 	mupadBraceError				mupadError
-	HiLink	mupadBuiltinFunction		Keyword
-  	HiLink 	mupadComma					Delimiter
+	HiLink	mupadArithmetic				Statement
+	HiLink	mupadAssign					Statement
+	HiLink	mupadBoolean				Constant
+ 	HiLink 	mupadBraceError				Error
+	HiLink	mupadBuiltinFunction		Statement
+  	HiLink 	mupadComma					Special
 	HiLink	mupadComment				Comment
-	HiLink	mupadComparison				Operator
+	HiLink	mupadComparison				Statement
+	HiLink	mupadCond					Type
 	HiLink	mupadConstant				Constant
-	HiLink	mupadCond					Conditional
-  	HiLink 	mupadCurlyError				mupadError
+  	HiLink 	mupadCurlyError				Error
+  	HiLink 	mupadDefError				Error
+  	HiLink 	mupadDefProc				Type
 	HiLink	mupadError					Error
-	HiLink	mupadFunction			 	Type
-	HiLink	mupadIfFor					Underlined
-	HiLink	mupadNumber					Number
-  	HiLink 	mupadParenError				mupadError
-	HiLink	mupadRepeat					Repeat
-  	HiLink 	mupadSemiError				mupadError
-	HiLink	mupadStatement				Statement
-	HiLink	mupadString					String
+	HiLink	mupadFunction			 	PreProc
+	HiLink	mupadNumber					Constant
+  	HiLink 	mupadParenError				Error
+	HiLink	mupadRepeat					Statement
+  	HiLink 	mupadSemiError				Error
+	HiLink	mupadString					Constant
 
 delcommand HiLink
 endif
