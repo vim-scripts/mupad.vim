@@ -8,7 +8,11 @@
 "au BufNewFile,BufRead *.mu	exe "source ~/.vim/syntax/mupad.vim"
 "
 " History
-"  10040131 fabio   0.4 Added Axiom, Category, Domain library
+"  20040507 fabio   1.0 Very small change in the way procedure names are 
+"						highlighted.
+"						I used it a lot and it seems to me that it is quite
+"						"stable", so I think it is worth the 1.0 name... ;-)	
+"  20040131 fabio   0.4 Added Axiom, Category, Domain library
 "  20040101 fabio   0.3 Corrected some bug 
 "						Redefined all colors (see the colors section)
 "						Added all builtin functions (mupad 2.5.3)
@@ -1088,6 +1092,8 @@ syn match muType 		"\(\<Type\>::\)\=\<Zero\>"
 
 
 " Statements
+syn region muDefProc	matchgroup=muFunction start="^\s*\<name\>\s*" matchgroup=muComma end="\s*;"  oneline
+syn region muDefProc	start="^" matchgroup=muFunction end="\s*:=\s*\<proc\>"  oneline
 syn keyword muFunction	proc begin local 
 syn keyword	muFunction	end_proc
 syn keyword muCond		for while repeat if 
@@ -1125,7 +1131,6 @@ syn region muString		start=+"+ end=+"+	oneline
 syn match muAssign		":="  
 syn match muDefError	":=\([^;:]*$\)\@="  
 syn match muDefError	":=\([^;:]*:=\)\@="  
-syn match muDefProc		":=[ \t]*\<proc\>"  
 
 " Definition of colors
 " It would be better to use standard highlight groups... 
